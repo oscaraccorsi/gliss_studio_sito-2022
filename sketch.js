@@ -149,10 +149,6 @@ function resetSketch() {
 }
 //-------------------------------------------mousePressed
 function mousePressed() {
-  let fs = fullscreen();
-    fullscreen(!fs);
-}
-if (keyCode === 32 ) {
   imageMode(CENTER);
   logo.resize(40, 0);
   image(logo, xLogo, windowHeight-25);
