@@ -16,8 +16,10 @@ let choice;
 let fr;
 let coeff = 4;
 let low, high;
-let x = 60;
-let y;
+let x, y;
+let w;
+let divW;
+
 let dec; //decibel
 
 let r, g, b, alpha;
@@ -35,12 +37,12 @@ function preload() {
   logo = loadImage(baseURLImage + 'good one white.png');
 }
 
-//----------------------------------------------------
+//----------------------------------------------------SETUP
 function setup() {
   createCanvas(windowWidth, windowHeight);
   frameRate(random(5, 60));
   xLogo = windowWidth-40;
-  //background(10);
+
   rectMode(CENTER);
   choice = random(colore);
   r= round(random(min, 255));
@@ -48,6 +50,10 @@ function setup() {
   b= round(random(min, 255));
   alpha= round(random(min, 255));
   noStroke();
+  divW = 10
+  w = width/20;
+  x = w+w/divW;
+  console.log(w, x);
   
   //----------------------------------------ping pong
   pingPong.Time = random(time);  
@@ -66,16 +72,17 @@ function setup() {
   dec = random(-40, -12);  
 }
 
-//----------------------------------------------------------
+//----------------------------------------------------------DRAW
 
 function draw() {
   osc.frequency.value = fr;
   fr -= coeff;
+  
   y = map(fr, 220, 30, 0, height);
   
   choice();
   
-  rect(x, y, 70, random(1, 10), 3);
+  rect(x, y, w, random(1, 10), 3);
   
   osc.volume.value = dec;
   
@@ -93,6 +100,7 @@ function rndBlu() {
     noFill();
   }
 }
+//--------------------------------------red
 function rndRed() {
   fill(r, 0, 0); 
   r= round(random(min, 255));
@@ -100,6 +108,7 @@ function rndRed() {
     noFill();
   }
 }
+//--------------------------------------green
 function rndGreen() {
   fill(0, g, 0);
   g= round(random(min, 255));
@@ -107,6 +116,7 @@ function rndGreen() {
     noFill();
   }
 }
+//--------------------------------------white
 function rndMulti() {
   fill(alpha);
   alpha= round(random(min, 255));
@@ -122,13 +132,13 @@ function resetSketch() {
   dec = random(-40, -12);
   fr = random(110, 220);
   low = random(30, 110);
-  x += 80;
+  x += w+w/divW;
   //console.log(osc.type, pingPong.Time, pingPong.NormalRange);
   
-  if (x >= width-60) {
+  if (x >= width-w) {
     //save();
     clear();
-    x = 60;
+    x =  w+w/divW;
     //background(10);
     osc.type = random(waveForm);
     choice = random(colore);
@@ -139,7 +149,6 @@ function resetSketch() {
 }
 //-------------------------------------------mousePressed
 function mousePressed() {
-  
   imageMode(CENTER);
   logo.resize(40, 0);
   image(logo, xLogo, windowHeight-25);
@@ -147,3 +156,4 @@ function mousePressed() {
   save();
   clear();
 }
+
