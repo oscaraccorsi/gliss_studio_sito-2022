@@ -156,4 +156,8 @@ function mousePressed() {
   save();
   clear();
 }
-
+if (keyCode === 32 ) {
+    let fs = fullscreen();
+    fullscreen(!fs);
+  }
+}
