@@ -155,5 +155,5 @@ function mousePressed() {
   tint(200); 
   save();
   clear();
-  }
 }
+
